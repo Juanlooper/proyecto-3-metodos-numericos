@@ -1,0 +1,24 @@
+{
+  "name": "proyecto-3-metodos-numericos",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Proyecto 3 Métodos Numéricos: Integración Numérica (Trapecio Simple y Simpson 1/3 Simple) - Ingeniería en Sistemas",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "terminal": "node cli/integracion_terminal.js",
+    "terminal:demo": "node cli/integracion_terminal.js --demo"
+  },
+  "dependencies": {
+    "katex": "^0.19.1",
+    "lucide-react": "^0.469.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^6.0.5"
+  }
+}
