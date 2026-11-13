@@ -444,22 +444,28 @@ Antes de evaluar la función, reemplazamos `sqrt`, `ln`, `log`, `asin` y `acos` 
 
 ## 🎙️ PARTE 3: MIGUEL OLIVER (Sección 03 — 3:00 minutos / ~390 palabras)
 
-*(Miguel tiene su cámara encendida. Selecciona la pestaña **"03 · Miguel Oliver — Código JS y Validación"**).*
+*(Miguel tiene su cámara encendida durante toda la intervención. Selecciona en la barra superior de la aplicación web la pestaña **"03 · Miguel Oliver — Código JS y Validación"** y navega de forma coordinada por las tres sub-pestañas: `3.1`, `3.2` y `3.3`).*
 
 ### Guion de Miguel Oliver:
 
-> **"Gracias, Nicole. En esta Sección 03 explicaré cómo representamos ambos métodos en la computadora mediante JavaScript, tanto en el programa interactivo de terminal para Node.js como en esta plataforma web con React."**
+> **"Muchas gracias, Nicole. Buenas tardes profesor y compañeros. En esta Sección 03 explicaré la representación de ambos métodos en la computadora mediante JavaScript, demostrando tanto la ejecución en la terminal de Node.js como la arquitectura del software y nuestro robusto sistema de control de errores."**
 >
-> *(Miguel muestra primero la sub-pestaña **3.2 Explicación Modular del Código Fuente JS** y recorre los 5 bloques):*
+> *(Miguel inicia en la sub-pestaña **3.1 Terminal Interactiva en Vivo (CLI)**):*
 >
-> **"Nuestro código fuente está estructurado en cinco módulos principales:"**
-> 1. **"El primer módulo es `compilarFuncionSegura(rawExpr)`. Como el usuario puede introducir cualquier función matemática, primero validamos la sintaxis: un algoritmo recorre el texto verificando el balance exacto de paréntesis abiertos y cerrados; luego comprobamos una lista blanca (*whitelist*) de identificadores matemáticos permitidos para bloquear cualquier intento de inyección de código o funciones inexistentes, y finalmente convertimos expresiones algebraicas como `0.5*x^4` a sintaxis ejecutable de JavaScript."**
-> 2. **"El segundo módulo es `validarLimitesYDominio(fn, rawA, rawB)`. En JavaScript estándar, dividir entre cero devuelve `Infinity` y evaluar una raíz cuadrada negativa devuelve `NaN` de forma silenciosa sin detener el programa. Para controlar todo tipo de errores, programamos funciones envolventes seguras (`__safeSqrt`, `__safeLn`, `__safeLog10`) y realizamos un barrido de muestreo en todo el intervalo $[a, b]$ que intercepta divisiones por cero, asíntotas verticales, raíces negativas, logaritmos fuera de dominio y límites iguales donde $a = b$."**
-> 3. **"El tercer módulo es `metodoTrapecioSimple(fn, a, b)`, que calcula el ancho $h = b - a$, evalúa los extremos $f(a)$ y $f(b)$, aplica la regla trapezoidal y estima la segunda derivada por diferencias finitas centradas para hallar el error de truncamiento."**
-> 4. **"El cuarto módulo es `metodoSimpsonUnTercioSimple(fn, a, b)`, que subdivide el intervalo en $n = 2$ partes con paso $h = \frac{b-a}{2}$, evalúa los tres nodos con pesos $1 - 4 - 1$ y estima la cuarta derivada para el error de truncamiento."**
-> 5. **"El quinto módulo es `calcularMetricasError()`, que computa el Error Verdadero Absoluto y el Error Relativo Porcentual."**
+> **"Comenzamos con la sub-pestaña 3.1, donde integramos un simulador interactivo de la terminal de Node.js (`npm run terminal`). Si presionamos la opción 1, se cargan de inmediato los datos del servidor Cloud: evalúa la función en los tres nodos enteros $R(0)=12$, $R(2)=20$ y $R(4)=76$, imprimiendo en pantalla la comparativa completa: Trapecio Simple con $176\text{ GB}$ y $63.37\%$ de error, frente a Simpson 1/3 Simple con $112\text{ GB}$ y tan solo $3.96\%$ de error relativo. Además, si el usuario desea digitar funciones personalizadas puede usar la opción 2, o correr los 9 casos de prueba automatizados con la opción 3."**
 >
-> *(Miguel cambia a la sub-pestaña **3.1 Entrada de Datos, Control de Errores y Terminal**):*
+> *(Miguel pasa a la sub-pestaña **3.2 Formulario de Datos y Casos de Error**):*
 >
-> **"Aquí en la sub-sección 3.1 demostramos en vivo el control de errores: si seleccionamos una entrada con paréntesis desbalanceados, una raíz negativa o `10 / (x - 2)` que tiene división por cero en $x = 2$, el validador intercepta la falla inmediatamente e informa la causa exacta en consola. Y al presionar el botón 'Setear Datos del Problema Planteado', se restauran los datos de nuestro servidor Cloud mostrando a la derecha la salida exacta de la terminal de Node.js. Como conclusión grupal, demostramos que Simpson 1/3 Simple ofrece una precisión muy superior con solo añadir el nodo central. ¡Muchas gracias!"**
+> **"Ahora pasamos a la sub-pestaña 3.2 para comprobar el control exhaustivo de errores. En JavaScript convencional, dividir entre cero arroja `Infinity` y la raíz cuadrada de un número negativo devuelve `NaN` de forma silenciosa, lo cual corrompería todo el cálculo numérico. Aquí implementamos validación preventiva en tres capas: si elegimos el caso de 'Paréntesis Desbalanceados', el analizador léxico aborta la ejecución avisando que falta un paréntesis de cierre; si probamos 'División por Cero' con `10 / (x - 2)` en $[0, 4]$, el barrido de muestreo intercepta la asíntota vertical en $x = 2$; y si los límites son idénticos ($a = b$), se bloquea el intervalo de ancho nulo. Al dar clic en 'Setear Datos del Problema Planteado', el sistema restablece limpiamente la función de nuestro servidor Cloud."**
+>
+> *(Miguel cambia a la sub-pestaña **3.3 Explicación Modular del Código Fuente JS** y hace clic en los bloques de código):*
+>
+> **"Finalmente, en la sub-pestaña 3.3 exponemos los cinco módulos funcionales que dan vida a nuestra solución:**
+> 1. **`compilarFuncionSegura()`: valida el balance de paréntesis, filtra los tokens contra una lista blanca (*whitelist*) para prevenir inyecciones de código y traduce la sintaxis algebraica a JavaScript ejecutable.**
+> 2. **`validarLimitesYDominio()`: ejecuta un barrido preventivo en 20 puntos del intervalo $[a, b]$ protegiendo el dominio real frente a raíces negativas, logaritmos no positivos y discontinuidades.**
+> 3. **`metodoTrapecioSimple()`: computa $h = b - a$, evalúa los extremos $f(a)$ y $f(b)$, aplica la regla lineal y estima la segunda derivada por diferencias finitas para el error de truncamiento.**
+> 4. **`metodoSimpsonUnTercioSimple()`: divide en $n = 2$ con paso $h = \frac{b-a}{2}$, aplica la ponderación parabólica $1 - 4 - 1$ con peso cuádruple en el nodo medio, y aproxima la cuarta derivada.**
+> 5. **`calcularMetricasError()`: calcula el Error Verdadero Absoluto en $\text{GB}$ y el Error Relativo Porcentual $\varepsilon_t\%$ tanto para la web como para la consola.**
+>
+> **Como conclusión grupal, comprobamos que con solo evaluar un nodo central adicional, Simpson 1/3 Simple incrementa drásticamente la exactitud, pasando de un error inaceptable del $63.37\%$ a un confiable $3.96\%$. ¡Muchas gracias a todos por su atención!"**
 
